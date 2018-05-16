@@ -94,40 +94,43 @@ public class MetricReporterService implements KairosDBJob
 	@Override
 	public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException
 	{
-		logger.debug("Reporting metrics");
-		long timestamp = System.currentTimeMillis();
-		try
-		{
-			for (KairosMetricReporter reporter : m_reporterProvider.get())
-			{
-				List<DataPointSet> dpList = reporter.getMetrics(timestamp);
-				for (DataPointSet dataPointSet : dpList)
-				{
-					for (DataPoint dataPoint : dataPointSet.getDataPoints())
-					{
-						m_publisher.post(new DataPointEvent(dataPointSet.getName(),
-								dataPointSet.getTags(), dataPoint, m_ttl));
-					}
-				}
-			}
-
-
-			Runtime runtime = Runtime.getRuntime();
-			ImmutableSortedMap<String, String> tags = Tags.create()
-					.put("host", m_hostname).build();
-			m_publisher.post(new DataPointEvent("kairosdb.jvm.free_memory",
-					tags, m_dataPointFactory.createDataPoint(timestamp, runtime.freeMemory()), m_ttl));
-			m_publisher.post(new DataPointEvent("kairosdb.jvm.total_memory",
-					tags, m_dataPointFactory.createDataPoint(timestamp, runtime.totalMemory()), m_ttl));
-			m_publisher.post(new DataPointEvent("kairosdb.jvm.max_memory",
-					tags, m_dataPointFactory.createDataPoint(timestamp, runtime.maxMemory()), m_ttl));
-			m_publisher.post(new DataPointEvent("kairosdb.jvm.thread_count",
-					tags, m_dataPointFactory.createDataPoint(timestamp, getThreadCount()), m_ttl));
-		}
-		catch (Throwable e)
-		{
-			// prevent the thread from dying
-			logger.error("Reporter service error", e);
-		}
+		// FIX timelab: no reporter
+	
+		//
+		// logger.debug("Reporting metrics");
+		// long timestamp = System.currentTimeMillis();
+		// try
+		// {
+		// 	for (KairosMetricReporter reporter : m_reporterProvider.get())
+		// 	{
+		// 		List<DataPointSet> dpList = reporter.getMetrics(timestamp);
+		// 		for (DataPointSet dataPointSet : dpList)
+		// 		{
+		// 			for (DataPoint dataPoint : dataPointSet.getDataPoints())
+		// 			{
+		// 				m_publisher.post(new DataPointEvent(dataPointSet.getName(),
+		// 						dataPointSet.getTags(), dataPoint, m_ttl));
+		// 			}
+		// 		}
+		// 	}
+		//
+		//
+		// 	Runtime runtime = Runtime.getRuntime();
+		// 	ImmutableSortedMap<String, String> tags = Tags.create()
+		// 			.put("host", m_hostname).build();
+		// 	m_publisher.post(new DataPointEvent("kairosdb.jvm.free_memory",
+		// 			tags, m_dataPointFactory.createDataPoint(timestamp, runtime.freeMemory()), m_ttl));
+		// 	m_publisher.post(new DataPointEvent("kairosdb.jvm.total_memory",
+		// 			tags, m_dataPointFactory.createDataPoint(timestamp, runtime.totalMemory()), m_ttl));
+		// 	m_publisher.post(new DataPointEvent("kairosdb.jvm.max_memory",
+		// 			tags, m_dataPointFactory.createDataPoint(timestamp, runtime.maxMemory()), m_ttl));
+		// 	m_publisher.post(new DataPointEvent("kairosdb.jvm.thread_count",
+		// 			tags, m_dataPointFactory.createDataPoint(timestamp, getThreadCount()), m_ttl));
+		// }
+		// catch (Throwable e)
+		// {
+		// 	// prevent the thread from dying
+		// 	logger.error("Reporter service error", e);
+		// }
 	}
 }
