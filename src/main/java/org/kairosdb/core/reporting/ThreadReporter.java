@@ -192,21 +192,23 @@ public class ThreadReporter
 		while (s_reporterData.getListSize() != 0)
 		{
 			ReporterDataPoint dp = s_reporterData.getNextDataPoint();
-			DataPointEvent dataPointEvent;
-
-			if (dp.isStringValue())
-			{
-				dataPointEvent = new DataPointEvent(dp.getMetricName(), dp.getTags(),
-						stringDataPointFactory.createDataPoint(s_reportTime.get(), dp.getStrValue()),
-						dp.getTtl());
-			}
-			else
-			{
-				dataPointEvent = new DataPointEvent(dp.getMetricName(), dp.getTags(),
-						longDataPointFactory.createDataPoint(s_reportTime.get(), dp.getValue()),
-						dp.getTtl());
-			}
-			publisher.post(dataPointEvent);
+			// FIX timelab: dont post data to publisher
+			//
+			// DataPointEvent dataPointEvent;
+			//
+			// if (dp.isStringValue())
+			// {
+			// 	dataPointEvent = new DataPointEvent(dp.getMetricName(), dp.getTags(),
+			// 			stringDataPointFactory.createDataPoint(s_reportTime.get(), dp.getStrValue()),
+			// 			dp.getTtl());
+			// }
+			// else
+			// {
+			// 	dataPointEvent = new DataPointEvent(dp.getMetricName(), dp.getTags(),
+			// 			longDataPointFactory.createDataPoint(s_reportTime.get(), dp.getValue()),
+			// 			dp.getTtl());
+			// }
+			// publisher.post(dataPointEvent);
 		}
 	}
 
