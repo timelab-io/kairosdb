@@ -289,20 +289,20 @@ public class Schema
 
 	private void setupSchema(CassandraClient cassandraClient)
 	{
-		try (Session session = cassandraClient.getSession())
-		{
-			session.execute(String.format(CREATE_KEYSPACE, cassandraClient.getKeyspace(),
-					cassandraClient.getReplication()));
-		}
-
-		try (Session session = cassandraClient.getKeyspaceSession())
-		{
-			session.execute(DATA_POINTS_TABLE);
-			session.execute(ROW_KEY_INDEX_TABLE);
-			session.execute(STRING_INDEX_TABLE);
-			session.execute(ROW_KEYS);
-			session.execute(ROW_KEY_TIME_INDEX);
-			session.execute(SERVICE_INDEX);
-		}
+		// try (Session session = cassandraClient.getSession())
+		// {
+		// 	session.execute(String.format(CREATE_KEYSPACE, cassandraClient.getKeyspace(),
+		// 			cassandraClient.getReplication()));
+		// }
+		//
+		// try (Session session = cassandraClient.getKeyspaceSession())
+		// {
+		// 	session.execute(DATA_POINTS_TABLE);
+		// 	session.execute(ROW_KEY_INDEX_TABLE);
+		// 	session.execute(STRING_INDEX_TABLE);
+		// 	session.execute(ROW_KEYS);
+		// 	session.execute(ROW_KEY_TIME_INDEX);
+		// 	session.execute(SERVICE_INDEX);
+		// }
 	}
 }

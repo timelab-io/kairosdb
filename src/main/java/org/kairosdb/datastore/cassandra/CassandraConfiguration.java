@@ -20,7 +20,7 @@ public class CassandraConfiguration
 	public static final String READ_CONSISTENCY_LEVEL = "kairosdb.datastore.cassandra.read_consistency_level";
 	public static final String WRITE_CONSISTENCY_LEVEL = "kairosdb.datastore.cassandra.write_consistency_level";
 	public static final String DATAPOINT_TTL = "kairosdb.datastore.cassandra.datapoint_ttl";
-	
+
 	public static final String ALIGN_DATAPOINT_TTL_WITH_TIMESTAMP = "kairosdb.datastore.cassandra.align_datapoint_ttl_with_timestamp";
 	public static final String FORCE_DEFAULT_DATAPOINT_TTL = "kairosdb.datastore.cassandra.force_default_datapoint_ttl";
 
@@ -48,7 +48,7 @@ public class CassandraConfiguration
 	public static final String REMOTE_MAX_REQ_PER_CONN = "kairosdb.datastore.cassandra.max_requests_per_connection.remote";
 
 	public static final String MAX_QUEUE_SIZE = "kairosdb.datastore.cassandra.max_queue_size";
-	
+
 	public static final String LOCAL_DATACENTER = "kairosdb.datastore.cassandra.local_datacenter";
 
 	@Inject
@@ -66,7 +66,7 @@ public class CassandraConfiguration
 	@Inject(optional = true)
 	@Named(ALIGN_DATAPOINT_TTL_WITH_TIMESTAMP)
 	private boolean m_alignDatapointTtlWithTimestamp = false;
-	
+
 	@Inject(optional = true)
 	@Named(FORCE_DEFAULT_DATAPOINT_TTL)
 	private boolean m_forceDefaultDatapointTtl = false;
@@ -144,7 +144,7 @@ public class CassandraConfiguration
 	@Inject
 	@Named(MAX_QUEUE_SIZE)
 	private int m_maxQueueSize = 500;
-	
+
 	@Inject(optional = true)
 	@Named(LOCAL_DATACENTER)
 	private String m_localDatacenter;
@@ -202,12 +202,12 @@ public class CassandraConfiguration
 	{
 		return m_datapointTtl;
 	}
-	
-	public boolean isAlignDatapointTtlWithTimestamp() 
+
+	public boolean isAlignDatapointTtlWithTimestamp()
 	{
 		return m_alignDatapointTtlWithTimestamp;
 	}
-	
+
 	public boolean isForceDefaultDatapointTtl()
 	{
 		return m_forceDefaultDatapointTtl;
@@ -282,7 +282,7 @@ public class CassandraConfiguration
 	{
 		return m_maxQueueSize;
 	}
-	
+
 	public String getLocalDatacenter()
 	{
 		return m_localDatacenter;
